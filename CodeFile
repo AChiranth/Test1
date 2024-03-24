@@ -27,3 +27,9 @@ def call_chatgpt(prompt, api_key, temperature=0.7):
         return response.json()  # Return the JSON response from the API
     else:
         return "Error: " + response.text
+
+api_key = "your_api_key_here"
+prompt = "Hello, ChatGPT!"
+
+response = call_chatgpt(prompt, api_key)
+print(response)
