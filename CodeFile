@@ -1,0 +1,29 @@
+import requests
+
+def call_chatgpt(prompt, api_key, temperature=0.7):
+    """
+    Calls the ChatGPT API with a given prompt and API key.
+
+    :param prompt: The prompt to send to ChatGPT.
+    :param api_key: Your API key for authentication.
+    :param temperature: Controls randomness in the response. Higher values lead to more varied responses.
+    :return: The response from ChatGPT.
+    """
+    url = "https://api.openai.com/v1/chat/completions"  # Hypothetical API endpoint
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    }
+    data = {
+        "model": "gpt-4",  # Specify the model version you want to use
+        "prompt": prompt,
+        "temperature": temperature,
+        "max_tokens": 150,  # Adjust based on how long you want the response to be
+    }
+
+    response = requests.post(url, headers=headers, json=data)
+
+    if response.status_code == 200:
+        return response.json()  # Return the JSON response from the API
+    else:
+        return "Error: " + response.text
